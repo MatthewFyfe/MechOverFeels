@@ -1,0 +1,4 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://cignox1amd840"]
+
+[resource]
+size = Vector3(50, 1, 50)

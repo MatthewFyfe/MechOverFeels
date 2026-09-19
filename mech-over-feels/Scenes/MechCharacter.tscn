@@ -1,11 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://2uofqysof0ec"]
+[gd_scene load_steps=9 format=3 uid="uid://2uofqysof0ec"]
 
 [ext_resource type="Script" uid="uid://bm20ngvwcl77v" path="res://MechController.gd" id="1_ktbq0"]
 [ext_resource type="Material" uid="uid://b8eaa8ifn847f" path="res://Materials/mech_material.tres" id="2_nbti4"]
+[ext_resource type="Texture2D" uid="uid://c7k0evt2dfhqf" path="res://GIMP/BalanceOrb.png" id="3_5dqdn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ktbq0"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ktbq0"]
+size = Vector3(0.5, 1, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5dqdn"]
 size = Vector3(0.5, 1, 0.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_nbti4"]
@@ -14,12 +18,14 @@ size = Vector3(0.5, 0.5, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_5dqdn"]
 size = Vector3(1, 0.2, 0.2)
 
-[node name="MechRoot" type="CharacterBody3D"]
+[node name="MechRoot" type="CharacterBody3D" node_paths=PackedStringArray("left_arm_raycaster", "left_arm_sight")]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_ktbq0")
 body_path = NodePath("MechLowerBody")
 torso_path = NodePath("MechLowerBody/MechTorso")
+left_arm_raycaster = NodePath("MechLowerBody/MechTorso/MechArms/MechArmLMesh/RayCast3D_Laser")
+left_arm_sight = NodePath("MechLowerBody/MechTorso/MechArms/MechArmLMesh/AimLaser")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_ktbq0")
@@ -30,6 +36,11 @@ shape = SubResource("CapsuleShape3D_ktbq0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.30932963, 0)
 material_override = ExtResource("2_nbti4")
 mesh = SubResource("BoxMesh_ktbq0")
+
+[node name="BodyHitBox" type="Area3D" parent="MechLowerBody/MechLowerBodyMesh"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MechLowerBody/MechLowerBodyMesh/BodyHitBox"]
+shape = SubResource("BoxShape3D_5dqdn")
 
 [node name="MechTorso" type="Node3D" parent="MechLowerBody"]
 
@@ -45,6 +56,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25746268, 0.28641975, 0.62
 material_override = ExtResource("2_nbti4")
 mesh = SubResource("BoxMesh_5dqdn")
 
+[node name="RayCast3D_Laser" type="RayCast3D" parent="MechLowerBody/MechTorso/MechArms/MechArmLMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5485155, 0, 0)
+target_position = Vector3(-10, 0, 0)
+collision_mask = 15
+
+[node name="AimLaser" type="Sprite3D" parent="MechLowerBody/MechTorso/MechArms/MechArmLMesh"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -10, 0, 0)
+modulate = Color(1, 0, 0, 1)
+billboard = 1
+texture = ExtResource("3_5dqdn")
+
 [node name="MechArmRMesh" type="MeshInstance3D" parent="MechLowerBody/MechTorso/MechArms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25746268, 0.28641975, -0.60923195)
 material_override = ExtResource("2_nbti4")
@@ -52,3 +74,5 @@ mesh = SubResource("BoxMesh_5dqdn")
 
 [node name="Camera3D" type="Camera3D" parent="MechLowerBody/MechTorso"]
 transform = Transform3D(0.0020816918, -0.34346303, 0.9391639, 0.0007612967, 0.93916625, 0.34346217, -0.99999756, 5.82078e-11, 0.0022165317, 2, 1, 0)
+
+[connection signal="area_entered" from="MechLowerBody/MechLowerBodyMesh/BodyHitBox" to="." method="_on_body_hit_box_area_entered"]

@@ -1,15 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnrujoeaxghfr"]
+[gd_scene load_steps=9 format=3 uid="uid://cnrujoeaxghfr"]
 
 [ext_resource type="Script" uid="uid://bpy635b15qgt8" path="res://Scenes/TTS_Test.gd" id="1_aviqd"]
 [ext_resource type="Material" uid="uid://fj2uap88ifag" path="res://Materials/test_ground_material.tres" id="1_lp07w"]
 [ext_resource type="PackedScene" uid="uid://2uofqysof0ec" path="res://Scenes/MechCharacter.tscn" id="2_vc1rf"]
 [ext_resource type="PackedScene" uid="uid://v0joiov0itsu" path="res://Scenes/hud_ui.tscn" id="3_aky2o"]
+[ext_resource type="BoxMesh" uid="uid://cignox1amd840" path="res://Meshes/Debug_Ground.tres" id="5_ei7bx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ei7bx"]
 size = Vector3(50, 1, 50)
 
-[sub_resource type="BoxMesh" id="BoxMesh_m653a"]
-size = Vector3(50, 1, 50)
+[sub_resource type="BoxShape3D" id="BoxShape3D_hlpg0"]
+size = Vector3(10, 10, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hlpg0"]
+size = Vector3(10, 10, 10)
 
 [node name="DebugSceneRoot" type="Node3D"]
 script = ExtResource("1_aviqd")
@@ -71,7 +75,19 @@ shape = SubResource("BoxShape3D_ei7bx")
 [node name="GroundMesh" type="MeshInstance3D" parent="Ground"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 material_override = ExtResource("1_lp07w")
-mesh = SubResource("BoxMesh_m653a")
+mesh = ExtResource("5_ei7bx")
+skeleton = NodePath("../..")
+
+[node name="Ground2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.571018)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("BoxShape3D_hlpg0")
+
+[node name="GroundMesh" type="MeshInstance3D" parent="Ground2"]
+material_override = ExtResource("1_lp07w")
+mesh = SubResource("BoxMesh_hlpg0")
 skeleton = NodePath("../..")
 
 [editable path="CanvasLayer/HUD_UI"]

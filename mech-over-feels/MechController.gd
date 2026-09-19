@@ -14,6 +14,10 @@ extends CharacterBody3D
 @export var balanceOrbUI: Sprite2D
 var balanceOrbHome: Vector2
 
+@export var left_arm_raycaster: RayCast3D
+@export var left_arm_sight: Sprite3D
+var laser_pellet = load("res://Scenes/laser_pellet.tscn")
+
 var _body: Node3D
 var _torso: Node3D
 var _torso_yaw_offset: float = 0.0  # relative to body
@@ -27,7 +31,7 @@ var drift_limit_max: float = 0.75
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_body = get_node(body_path)
-	_torso = get_node(torso_path)
+	_torso = get_node(torso_path)	
 	balanceOrbHome = balanceOrbUI.position
 
 
@@ -95,6 +99,8 @@ func _handle_weapons(delta: float) -> void:
 	var firing_left
 	var firing_right
 	
+	#_handle_laser_sights(delta)
+	
 	if(playerNumber == 1):
 		firing_left = Input.get_action_strength("fire_left_p1");
 		firing_right = Input.get_action_strength("fire_right_p1");
@@ -105,12 +111,26 @@ func _handle_weapons(delta: float) -> void:
 	# Firing weapon affects balance based on torso rotation!
 	if(firing_left > 0):
 		drift_vector += Vector2(0.1*delta, -0.025*delta)
+		var bullet = laser_pellet.instantiate()
+		bullet.position = left_arm_raycaster.position		
+		get_parent().add_child(bullet)
+		
 	if(firing_right > 0):
 		drift_vector += Vector2(-0.1*delta, -0.025*delta)
 	
 	_torso_yaw_offset += (firing_left*torso_left_recoil_speed - firing_right*torso_right_recoil_speed) * delta;
 	_torso_yaw_offset = clamp(_torso_yaw_offset, -max_torso_yaw, max_torso_yaw)
 	_torso.rotation.y = deg_to_rad(_torso_yaw_offset)
+
+
+#func _handle_laser_sights(delta: float) -> void:
+	#var collision = left_arm_raycaster.get_collider()
+	#if(collision != null):
+		#left_arm_sight.visible = true
+		#left_arm_sight.position = left_arm_raycaster.get_collision_point()
+	#else:
+		#left_arm_sight.visible = false
+
 
 func _handle_balance(delta: float) ->  void:
 	#apply our drift vector for this frame
@@ -123,10 +143,24 @@ func _handle_balance(delta: float) ->  void:
 	if(abs(balance_level.distance_to(balanceOrbHome))) > balance_limit_radius:
 		balanceOrbUI.modulate = Color.YELLOW
 		#wobble
+		_body.rotation.x = balance_level.normalized().x * 0.2
+		_body.rotation.z = balance_level.normalized().y * 0.2
+		
 	else:
 		balanceOrbUI.modulate = Color.WHITE
 		#normal
+		_body.rotation.x = 0
+		_body.rotation.z = 0
 		
 	if(abs(balance_level.distance_to(balanceOrbHome))) > balance_limit_max:
 		balanceOrbUI.modulate = Color.RED
 		#fall over
+		_body.rotation.x = 0
+		_body.rotation.z = 90
+
+# Did we get shot?
+func _on_body_hit_box_area_entered(area: Area3D) -> void:
+	#print("Hit by " + area.name)
+	if(area.owningPlayer != null and area.owningPlayer != playerNumber):
+		#drift_vector += Vector2(randf_range(-0.1,0.1), randf_range(-0.1,0.1))
+		drift_vector += (drift_vector.normalized() * 0.1).limit_length(drift_limit_max)
