@@ -21,10 +21,14 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(delta: float) -> void:	
 	_handle_movement(delta)
 	_handle_torso_rotation(delta)
 	_handle_weapons(delta)
+	
+func _apply_gravity(delta: float) -> void:
+	if not is_on_floor():
+		velocity.y -= 9.8
 	
 func _handle_movement(delta: float) -> void:
 	var forward := Input.get_action_strength("move_forward") - Input.get_action_strength("move_backward")
@@ -36,6 +40,7 @@ func _handle_movement(delta: float) -> void:
 	# Move in body's forward direction
 	var forward_dir := -_body.global_transform.basis.x
 	velocity = forward_dir * (forward * move_speed)
+	_apply_gravity(delta)
 	move_and_slide()
 
 func _handle_torso_rotation(delta: float) -> void:

@@ -7,8 +7,6 @@ func _ready() -> void:
 	var voices = DisplayServer.tts_get_voices_for_language("en")
 	var voice_id = voices[1]
 	
-	DisplayServer.tts_speak("Hello, world!", voice_id)
-	
 	DisplayServer.tts_speak("Reactor, online.", voice_id)
 	DisplayServer.tts_speak("Sensors, online.", voice_id)
 	DisplayServer.tts_speak("Weapons, online.", voice_id)

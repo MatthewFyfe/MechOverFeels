@@ -4,13 +4,37 @@
 
 [node name="HUD_UI" type="Node2D"]
 
-[node name="Label" type="Label" parent="."]
-offset_left = 928.0
-offset_top = 1048.0
-offset_right = 1000.0
-offset_bottom = 1071.0
-text = "BALANCE"
-
 [node name="BalanceOMeter" type="Sprite2D" parent="."]
 position = Vector2(960, 984)
 texture = ExtResource("1_eotbt")
+
+[node name="Balance_Label" type="Label" parent="BalanceOMeter"]
+offset_left = -32.0
+offset_top = 64.0
+offset_right = 40.0
+offset_bottom = 87.0
+text = "BALANCE"
+
+[node name="MechHP" type="Sprite2D" parent="."]
+position = Vector2(1761, 879)
+scale = Vector2(1.8828125, 2.140625)
+texture = ExtResource("1_eotbt")
+
+[node name="HP_Label" type="Label" parent="MechHP"]
+offset_left = -45.0
+offset_top = 68.0
+offset_right = 47.0
+offset_bottom = 91.0
+text = "HP Diagram"
+
+[node name="WeaponStatus" type="Sprite2D" parent="."]
+position = Vector2(185.99998, 962)
+scale = Vector2(2.546875, 1)
+texture = ExtResource("1_eotbt")
+
+[node name="Weapon_Label" type="Label" parent="WeaponStatus"]
+offset_left = -61.251526
+offset_top = 75.0
+offset_right = 55.748474
+offset_bottom = 98.0
+text = "Weapon Status"

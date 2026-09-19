@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://cnrujoeaxghfr"]
+[gd_scene load_steps=8 format=3 uid="uid://cnrujoeaxghfr"]
 
 [ext_resource type="Script" uid="uid://bpy635b15qgt8" path="res://Scenes/TTS_Test.gd" id="1_aviqd"]
 [ext_resource type="Material" uid="uid://fj2uap88ifag" path="res://Materials/test_ground_material.tres" id="1_lp07w"]
 [ext_resource type="PackedScene" uid="uid://2uofqysof0ec" path="res://Scenes/MechCharacter.tscn" id="2_vc1rf"]
 [ext_resource type="PackedScene" uid="uid://v0joiov0itsu" path="res://Scenes/hud_ui.tscn" id="3_aky2o"]
+[ext_resource type="PackedScene" uid="uid://c3acmb77q5864" path="res://Scenes/enemy.tscn" id="5_ei7bx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ei7bx"]
+size = Vector3(50, 1, 50)
 
 [sub_resource type="BoxMesh" id="BoxMesh_m653a"]
 size = Vector3(50, 1, 50)
@@ -15,14 +19,24 @@ script = ExtResource("1_aviqd")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.112417, 0)
 light_angular_distance = 79.79
 
-[node name="Ground" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-material_override = ExtResource("1_lp07w")
-mesh = SubResource("BoxMesh_m653a")
-
 [node name="MechRoot" parent="." instance=ExtResource("2_vc1rf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3872318, 2.1479416, 2.593813)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3872318, 6.320811, 2.593813)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD_UI" parent="CanvasLayer" instance=ExtResource("3_aky2o")]
+
+[node name="Enemy" parent="." instance=ExtResource("5_ei7bx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.111565, 9.820931, 1.345459)
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("BoxShape3D_ei7bx")
+
+[node name="GroundMesh" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+material_override = ExtResource("1_lp07w")
+mesh = SubResource("BoxMesh_m653a")
+skeleton = NodePath("../..")

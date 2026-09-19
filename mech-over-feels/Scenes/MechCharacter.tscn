@@ -1,6 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://2uofqysof0ec"]
+[gd_scene load_steps=7 format=3 uid="uid://2uofqysof0ec"]
 
 [ext_resource type="Script" uid="uid://bm20ngvwcl77v" path="res://MechController.gd" id="1_ktbq0"]
+[ext_resource type="Material" uid="uid://b8eaa8ifn847f" path="res://Materials/mech_material.tres" id="2_nbti4"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ktbq0"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ktbq0"]
 size = Vector3(0.5, 1, 0.5)
@@ -11,37 +14,41 @@ size = Vector3(0.5, 0.5, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_5dqdn"]
 size = Vector3(1, 0.2, 0.2)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ktbq0"]
-
 [node name="MechRoot" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_ktbq0")
 body_path = NodePath("MechLowerBody")
 torso_path = NodePath("MechLowerBody/MechTorso")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ktbq0")
 
 [node name="MechLowerBody" type="Node3D" parent="."]
 
 [node name="MechLowerBodyMesh" type="MeshInstance3D" parent="MechLowerBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.30932963, 0)
+material_override = ExtResource("2_nbti4")
 mesh = SubResource("BoxMesh_ktbq0")
 
 [node name="MechTorso" type="Node3D" parent="MechLowerBody"]
 
 [node name="MechTorsoMesh" type="MeshInstance3D" parent="MechLowerBody/MechTorso"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46299362, 0)
+material_override = ExtResource("2_nbti4")
 mesh = SubResource("BoxMesh_nbti4")
 
 [node name="MechArms" type="Node3D" parent="MechLowerBody/MechTorso"]
 
 [node name="MechArmLMesh" type="MeshInstance3D" parent="MechLowerBody/MechTorso/MechArms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25746268, 0.28641975, 0.62340033)
+material_override = ExtResource("2_nbti4")
 mesh = SubResource("BoxMesh_5dqdn")
 
 [node name="MechArmRMesh" type="MeshInstance3D" parent="MechLowerBody/MechTorso/MechArms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25746268, 0.28641975, -0.60923195)
+material_override = ExtResource("2_nbti4")
 mesh = SubResource("BoxMesh_5dqdn")
 
 [node name="Camera3D" type="Camera3D" parent="MechLowerBody/MechTorso"]
 transform = Transform3D(0.0020816918, -0.34346303, 0.9391639, 0.0007612967, 0.93916625, 0.34346217, -0.99999756, 5.82078e-11, 0.0022165317, 2, 1, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_ktbq0")

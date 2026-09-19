@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3acmb77q5864"]
+
+[ext_resource type="Script" uid="uid://cfm3qwklsp6wu" path="res://Scenes/enemy.gd" id="1_1f0kj"]
+[ext_resource type="Material" uid="uid://dmflj5avbmagq" path="res://Materials/enemy_material.tres" id="1_hghv2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_afpow"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1f0kj"]
+
+[node name="Enemy" type="RigidBody3D"]
+script = ExtResource("1_1f0kj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_afpow")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_hghv2")
+mesh = SubResource("CapsuleMesh_1f0kj")
