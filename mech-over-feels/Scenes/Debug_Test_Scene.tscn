@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cnrujoeaxghfr"]
+[gd_scene load_steps=6 format=3 uid="uid://cnrujoeaxghfr"]
 
+[ext_resource type="Script" uid="uid://bpy635b15qgt8" path="res://Scenes/TTS_Test.gd" id="1_aviqd"]
 [ext_resource type="Material" uid="uid://fj2uap88ifag" path="res://Materials/test_ground_material.tres" id="1_lp07w"]
 [ext_resource type="PackedScene" uid="uid://2uofqysof0ec" path="res://Scenes/MechCharacter.tscn" id="2_vc1rf"]
 [ext_resource type="PackedScene" uid="uid://v0joiov0itsu" path="res://Scenes/hud_ui.tscn" id="3_aky2o"]
@@ -8,6 +9,7 @@
 size = Vector3(50, 1, 50)
 
 [node name="DebugSceneRoot" type="Node3D"]
+script = ExtResource("1_aviqd")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.112417, 0)

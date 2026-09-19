@@ -3,7 +3,8 @@ extends CharacterBody3D
 @export var move_speed: float = 5.0
 @export var turn_speed: float = 60.0        # degrees/sec
 @export var torso_turn_speed: float = 90.0  # degrees/sec
-@export var torso_recoil_speed: float = 45.0 #degrees/sec
+@export var torso_left_recoil_speed: float = 45.0 #degrees/sec
+@export var torso_right_recoil_speed: float = 180.0 #degrees/sec
 @export var max_torso_yaw: float = 45.0     # degrees from body center
 
 @export var body_path: NodePath
@@ -52,6 +53,6 @@ func _handle_weapons(delta: float) -> void:
 	var firing_left := Input.get_action_strength("fire_left");
 	var firing_right := Input.get_action_strength("fire_right");
 	
-	_torso_yaw_offset += (firing_left - firing_right) * torso_recoil_speed * delta;
+	_torso_yaw_offset += (firing_left*torso_left_recoil_speed - firing_right*torso_right_recoil_speed) * delta;
 	_torso_yaw_offset = clamp(_torso_yaw_offset, -max_torso_yaw, max_torso_yaw)
 	_torso.rotation.y = deg_to_rad(_torso_yaw_offset)
