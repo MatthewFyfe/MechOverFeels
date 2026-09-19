@@ -1,40 +1,36 @@
-[gd_scene load_steps=2 format=3 uid="uid://v0joiov0itsu"]
+[gd_scene load_steps=3 format=3 uid="uid://v0joiov0itsu"]
 
-[ext_resource type="Texture2D" uid="uid://bojnwum821qc1" path="res://icon.svg" id="1_eotbt"]
+[ext_resource type="Texture2D" uid="uid://jl8termc6vn" path="res://GIMP/BalanceOMeter.png" id="1_eotbt"]
+[ext_resource type="Texture2D" uid="uid://c7k0evt2dfhqf" path="res://GIMP/BalanceOrb.png" id="2_jwgpt"]
 
 [node name="HUD_UI" type="Node2D"]
 
-[node name="BalanceOMeter" type="Sprite2D" parent="."]
-position = Vector2(960, 984)
+[node name="BalanceOMeter1" type="Sprite2D" parent="."]
+position = Vector2(480, 984)
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("1_eotbt")
 
-[node name="Balance_Label" type="Label" parent="BalanceOMeter"]
+[node name="Balance_Label" type="Label" parent="BalanceOMeter1"]
 offset_left = -32.0
 offset_top = 64.0
 offset_right = 40.0
 offset_bottom = 87.0
 text = "BALANCE"
 
-[node name="MechHP" type="Sprite2D" parent="."]
-position = Vector2(1761, 879)
-scale = Vector2(1.8828125, 2.140625)
+[node name="BalanceOrb1" type="Sprite2D" parent="BalanceOMeter1"]
+texture = ExtResource("2_jwgpt")
+
+[node name="BalanceOMeter2" type="Sprite2D" parent="."]
+position = Vector2(1440, 984)
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("1_eotbt")
 
-[node name="HP_Label" type="Label" parent="MechHP"]
-offset_left = -45.0
-offset_top = 68.0
-offset_right = 47.0
-offset_bottom = 91.0
-text = "HP Diagram"
+[node name="Balance_Label" type="Label" parent="BalanceOMeter2"]
+offset_left = -32.0
+offset_top = 64.0
+offset_right = 40.0
+offset_bottom = 87.0
+text = "BALANCE"
 
-[node name="WeaponStatus" type="Sprite2D" parent="."]
-position = Vector2(185.99998, 962)
-scale = Vector2(2.546875, 1)
-texture = ExtResource("1_eotbt")
-
-[node name="Weapon_Label" type="Label" parent="WeaponStatus"]
-offset_left = -61.251526
-offset_top = 75.0
-offset_right = 55.748474
-offset_bottom = 98.0
-text = "Weapon Status"
+[node name="BalanceOrb2" type="Sprite2D" parent="BalanceOMeter2"]
+texture = ExtResource("2_jwgpt")

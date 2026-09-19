@@ -33,9 +33,10 @@ handle_input_locally = false
 size = Vector2i(958, 1080)
 render_target_update_mode = 4
 
-[node name="MechRoot_P1" parent="SplitScreenGridContainer/P1_Screen/SubViewport" instance=ExtResource("2_vc1rf")]
+[node name="MechRoot_P1" parent="SplitScreenGridContainer/P1_Screen/SubViewport" node_paths=PackedStringArray("balanceOrbUI") instance=ExtResource("2_vc1rf")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -10, 1, 0)
 playerNumber = 1
+balanceOrbUI = NodePath("../../../../CanvasLayer/HUD_UI/BalanceOMeter1/BalanceOrb1")
 
 [node name="P2_Screen" type="SubViewportContainer" parent="SplitScreenGridContainer"]
 layout_mode = 2
@@ -48,9 +49,10 @@ handle_input_locally = false
 size = Vector2i(958, 1080)
 render_target_update_mode = 4
 
-[node name="MechRoot_P2" parent="SplitScreenGridContainer/P2_Screen/SubViewport" instance=ExtResource("2_vc1rf")]
+[node name="MechRoot_P2" parent="SplitScreenGridContainer/P2_Screen/SubViewport" node_paths=PackedStringArray("balanceOrbUI") instance=ExtResource("2_vc1rf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, 0)
 playerNumber = 2
+balanceOrbUI = NodePath("../../../../CanvasLayer/HUD_UI/BalanceOMeter2/BalanceOrb2")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.112417, 0)
@@ -71,3 +73,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 material_override = ExtResource("1_lp07w")
 mesh = SubResource("BoxMesh_m653a")
 skeleton = NodePath("../..")
+
+[editable path="CanvasLayer/HUD_UI"]
