@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cnrujoeaxghfr"]
+[gd_scene load_steps=7 format=3 uid="uid://cnrujoeaxghfr"]
 
 [ext_resource type="Script" uid="uid://bpy635b15qgt8" path="res://Scenes/TTS_Test.gd" id="1_aviqd"]
 [ext_resource type="Material" uid="uid://fj2uap88ifag" path="res://Materials/test_ground_material.tres" id="1_lp07w"]
 [ext_resource type="PackedScene" uid="uid://2uofqysof0ec" path="res://Scenes/MechCharacter.tscn" id="2_vc1rf"]
 [ext_resource type="PackedScene" uid="uid://v0joiov0itsu" path="res://Scenes/hud_ui.tscn" id="3_aky2o"]
-[ext_resource type="PackedScene" uid="uid://c3acmb77q5864" path="res://Scenes/enemy.tscn" id="5_ei7bx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ei7bx"]
 size = Vector3(50, 1, 50)
@@ -15,19 +14,51 @@ size = Vector3(50, 1, 50)
 [node name="DebugSceneRoot" type="Node3D"]
 script = ExtResource("1_aviqd")
 
+[node name="SplitScreenGridContainer" type="GridContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="P1_Screen" type="SubViewportContainer" parent="SplitScreenGridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SplitScreenGridContainer/P1_Screen"]
+handle_input_locally = false
+size = Vector2i(958, 1080)
+render_target_update_mode = 4
+
+[node name="MechRoot_P1" parent="SplitScreenGridContainer/P1_Screen/SubViewport" instance=ExtResource("2_vc1rf")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -10, 1, 0)
+playerNumber = 1
+
+[node name="P2_Screen" type="SubViewportContainer" parent="SplitScreenGridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SplitScreenGridContainer/P2_Screen"]
+handle_input_locally = false
+size = Vector2i(958, 1080)
+render_target_update_mode = 4
+
+[node name="MechRoot_P2" parent="SplitScreenGridContainer/P2_Screen/SubViewport" instance=ExtResource("2_vc1rf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, 0)
+playerNumber = 2
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.112417, 0)
 light_angular_distance = 79.79
 
-[node name="MechRoot" parent="." instance=ExtResource("2_vc1rf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3872318, 6.320811, 2.593813)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD_UI" parent="CanvasLayer" instance=ExtResource("3_aky2o")]
-
-[node name="Enemy" parent="." instance=ExtResource("5_ei7bx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.111565, 9.820931, 1.345459)
 
 [node name="Ground" type="StaticBody3D" parent="."]
 

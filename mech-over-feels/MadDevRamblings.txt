@@ -7,3 +7,8 @@ Balance Meter:
  -> When climbing/descending hills? apply some off balance
  -> When taking damage apply some off balance?
  -> Left gun machine gun with constant low recoil, right gun rail gun with one big recoil?
+
+
+PIVOT to SPLIT SCREEN 1v1 or 2v2 mode (copilots optional)
+
+Stretch Goal: 1 player obstacle course vs turrets

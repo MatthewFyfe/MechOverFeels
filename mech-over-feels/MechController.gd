@@ -9,6 +9,9 @@ extends CharacterBody3D
 
 @export var body_path: NodePath
 @export var torso_path: NodePath
+@export var camera: Camera3D
+
+@export var playerNumber: int
 
 var _body: Node3D
 var _torso: Node3D
@@ -31,9 +34,16 @@ func _apply_gravity(delta: float) -> void:
 		velocity.y -= 9.8
 	
 func _handle_movement(delta: float) -> void:
-	var forward := Input.get_action_strength("move_forward") - Input.get_action_strength("move_backward")
-	var turn := Input.get_action_strength("turn_right") - Input.get_action_strength("turn_left")
-
+	var forward;
+	var turn;
+	
+	if(playerNumber == 1):
+		forward = Input.get_action_strength("move_forward_p1") - Input.get_action_strength("move_backward_p1")
+		turn = Input.get_action_strength("turn_right_p1") - Input.get_action_strength("turn_left_p1")
+	if(playerNumber == 2):
+		forward = Input.get_action_strength("move_forward_p2") - Input.get_action_strength("move_backward_p2")
+		turn = Input.get_action_strength("turn_right_p2") - Input.get_action_strength("turn_left_p2")
+	
 	# Rotate body (tank-style)
 	_body.rotate_y(deg_to_rad(-turn * turn_speed * delta))
 
@@ -45,7 +55,12 @@ func _handle_movement(delta: float) -> void:
 
 func _handle_torso_rotation(delta: float) -> void:
 	# Mouse/keys control torso yaw
-	var aim_input := Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left")
+	var aim_input
+	if(playerNumber == 1):
+		aim_input = Input.get_action_strength("aim_right_p1") - Input.get_action_strength("aim_left_p1")
+	if(playerNumber == 2):
+		aim_input = Input.get_action_strength("aim_right_p2") - Input.get_action_strength("aim_left_p2")
+	
 	_torso_yaw_offset += -aim_input * torso_turn_speed * delta
 
 	# Clamp torso yaw relative to body
@@ -55,8 +70,15 @@ func _handle_torso_rotation(delta: float) -> void:
 	_torso.rotation.y = deg_to_rad(_torso_yaw_offset)
 	
 func _handle_weapons(delta: float) -> void:	
-	var firing_left := Input.get_action_strength("fire_left");
-	var firing_right := Input.get_action_strength("fire_right");
+	var firing_left
+	var firing_right
+	
+	if(playerNumber == 1):
+		firing_left = Input.get_action_strength("fire_left_p1");
+		firing_right = Input.get_action_strength("fire_right_p1");
+	if(playerNumber == 2):
+		firing_left = Input.get_action_strength("fire_left_p2");
+		firing_right = Input.get_action_strength("fire_right_p2");
 	
 	_torso_yaw_offset += (firing_left*torso_left_recoil_speed - firing_right*torso_right_recoil_speed) * delta;
 	_torso_yaw_offset = clamp(_torso_yaw_offset, -max_torso_yaw, max_torso_yaw)
