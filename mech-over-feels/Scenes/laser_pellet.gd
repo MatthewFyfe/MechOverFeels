@@ -4,11 +4,14 @@ var speed = 10
 var timer = 0
 var lifetime = 3
 var owningPlayer:int = 0
+var forward_dir:Vector3
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	#position += Vector3(speed,0,0) * delta
-	var forward_dir = global_transform.basis.x.normalized()
+	#var forward_dir = global_transform.basis.x.normalized()
+	#position += forward_dir * speed * delta
+	
 	position += forward_dir * speed * delta
 	
 	timer += delta

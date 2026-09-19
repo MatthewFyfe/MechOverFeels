@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://ttvpnf0ask8b"]
+
+[ext_resource type="Script" uid="uid://stsynasphid7" path="res://Scenes/laser_pellet.gd" id="1_myedr"]
+[ext_resource type="Material" uid="uid://b8eaa8ifn847f" path="res://Materials/mech_material.tres" id="2_myedr"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x7rcn"]
+radius = 0.01
+height = 0.2
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_01r6m"]
+radius = 0.05
+height = 0.2
+
+[node name="GaussPellet" type="Area3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+script = ExtResource("1_myedr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_x7rcn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+material_override = ExtResource("2_myedr")
+mesh = SubResource("CapsuleMesh_01r6m")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

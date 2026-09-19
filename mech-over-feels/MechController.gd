@@ -17,6 +17,16 @@ var balanceOrbHome: Vector2
 @export var left_arm_raycaster: RayCast3D
 @export var left_arm_sight: Sprite3D
 var laser_pellet = load("res://Scenes/laser_pellet.tscn")
+@export var left_fire_position: Node3D
+var laser_fire_rate:float = 0.1
+var laser_fire_timer = 0
+
+@export var right_arm_raycaster: RayCast3D
+@export var right_arm_sight: Sprite3D
+var gauss_pellet = load("res://Scenes/gauss_pellet.tscn")
+@export var right_fire_position: Node3D
+var gauss_fire_rate:float=1.0
+var gauss_fire_timer = 0
 
 var _body: Node3D
 var _torso: Node3D
@@ -100,6 +110,8 @@ func _handle_weapons(delta: float) -> void:
 	var firing_right
 	
 	#_handle_laser_sights(delta)
+	laser_fire_timer += delta
+	gauss_fire_timer += delta
 	
 	if(playerNumber == 1):
 		firing_left = Input.get_action_strength("fire_left_p1");
@@ -108,15 +120,31 @@ func _handle_weapons(delta: float) -> void:
 		firing_left = Input.get_action_strength("fire_left_p2");
 		firing_right = Input.get_action_strength("fire_right_p2");
 	
-	# Firing weapon affects balance based on torso rotation!
-	if(firing_left > 0):
-		drift_vector += Vector2(0.1*delta, -0.025*delta)
+	# Firing weapon affects balance based on torso rotation! TODO maybe
+	if(firing_left > 0 and laser_fire_timer > laser_fire_rate):
+		drift_vector += Vector2(0.4*delta, -0.1*delta)
 		var bullet = laser_pellet.instantiate()
-		bullet.position = left_arm_raycaster.position		
+		bullet.position = left_fire_position.global_position
+		bullet.forward_dir = -left_fire_position.global_transform.basis.x.normalized()
+		bullet.owningPlayer = playerNumber
 		get_parent().add_child(bullet)
+		laser_fire_timer = 0
+	else:
+		firing_left = 0
 		
-	if(firing_right > 0):
-		drift_vector += Vector2(-0.1*delta, -0.025*delta)
+		
+	if(firing_right > 0 and gauss_fire_timer > gauss_fire_rate):
+		drift_vector += Vector2(-4.0*delta, -1.0*delta)
+		var gauss = gauss_pellet.instantiate()
+		gauss.position = right_fire_position.global_position
+		gauss.forward_dir = -right_fire_position.global_transform.basis.x.normalized()
+		gauss.owningPlayer = playerNumber
+		gauss.speed = 6
+		gauss.lifetime = 6
+		get_parent().add_child(gauss)
+		gauss_fire_timer = 0
+	else:
+		firing_right = 0
 	
 	_torso_yaw_offset += (firing_left*torso_left_recoil_speed - firing_right*torso_right_recoil_speed) * delta;
 	_torso_yaw_offset = clamp(_torso_yaw_offset, -max_torso_yaw, max_torso_yaw)
@@ -163,4 +191,4 @@ func _on_body_hit_box_area_entered(area: Area3D) -> void:
 	#print("Hit by " + area.name)
 	if(area.owningPlayer != null and area.owningPlayer != playerNumber):
 		#drift_vector += Vector2(randf_range(-0.1,0.1), randf_range(-0.1,0.1))
-		drift_vector += (drift_vector.normalized() * 0.1).limit_length(drift_limit_max)
+		drift_vector += (drift_vector.normalized())
