@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://v0joiov0itsu"]
+
+[ext_resource type="Texture2D" uid="uid://bojnwum821qc1" path="res://icon.svg" id="1_eotbt"]
+
+[node name="HUD_UI" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 928.0
+offset_top = 1048.0
+offset_right = 1000.0
+offset_bottom = 1071.0
+text = "BALANCE"
+
+[node name="BalanceOMeter" type="Sprite2D" parent="."]
+position = Vector2(960, 984)
+texture = ExtResource("1_eotbt")

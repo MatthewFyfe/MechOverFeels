@@ -1,0 +1,9 @@
+Balance Meter:
+ -> shift left or right based on leg positions during walk cycle
+ -> when gun fires it can apply a rotational force to torso
+ -> shift balance based on torso and arm facing
+ -> if balance too bad, fall over (head over heels)
+
+ -> When climbing/descending hills? apply some off balance
+ -> When taking damage apply some off balance?
+ -> Left gun machine gun with constant low recoil, right gun rail gun with one big recoil?
