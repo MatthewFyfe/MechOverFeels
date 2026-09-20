@@ -7,7 +7,7 @@ static var score2 = 0
 
 @export var scoreLabel: Label
 
-@export var move_speed: float = 5.0
+@export var move_speed: float = 10.0
 @export var turn_speed: float = 60.0        # degrees/sec
 @export var torso_turn_speed: float = 90.0  # degrees/sec
 @export var torso_left_recoil_speed: float = 45.0 #degrees/sec
@@ -91,8 +91,8 @@ func _handle_movement(delta: float) -> void:
 		drift_vector += Vector2(0.05*delta,0)	
 
 	# Move in body's forward direction
-	var forward_dir := -_body.global_transform.basis.x
-	velocity = forward_dir * (forward * move_speed)
+	var forward_dir := -_body.global_transform.basis.x	
+	velocity = (forward_dir * (forward * move_speed)) * (0.75 + 2 * drift_vector.length())
 	
 	if(velocity.length() > 0):
 		LLeg_anim.play("Lleg_anim")
