@@ -1,11 +1,13 @@
-[gd_scene load_steps=22 format=4 uid="uid://cnrujoeaxghfr"]
+[gd_scene load_steps=24 format=4 uid="uid://cnrujoeaxghfr"]
 
 [ext_resource type="Script" uid="uid://bpy635b15qgt8" path="res://Scenes/TTS_Test.gd" id="1_aviqd"]
 [ext_resource type="Material" uid="uid://fj2uap88ifag" path="res://Materials/test_ground_material.tres" id="1_lp07w"]
 [ext_resource type="PackedScene" uid="uid://2uofqysof0ec" path="res://Scenes/MechCharacter.tscn" id="2_vc1rf"]
 [ext_resource type="Material" uid="uid://bc5yrxoiunsq2" path="res://Materials/blueTeam_material.tres" id="3_8jrf2"]
 [ext_resource type="PackedScene" uid="uid://v0joiov0itsu" path="res://Scenes/hud_ui.tscn" id="3_aky2o"]
+[ext_resource type="Material" uid="uid://dmig2ytch3hdd" path="res://Materials/blue_laser_material.tres" id="3_v231w"]
 [ext_resource type="Material" uid="uid://dmflj5avbmagq" path="res://Materials/enemy_material.tres" id="4_l04fk"]
+[ext_resource type="Material" uid="uid://d3ohp00rrqcmb" path="res://Materials/red_laser_material.tres" id="5_hwglg"]
 [ext_resource type="Material" uid="uid://cputnngwpxsew" path="res://Materials/dome_material.tres" id="8_eicry"]
 [ext_resource type="Material" uid="uid://b8eaa8ifn847f" path="res://Materials/mech_material.tres" id="8_l04fk"]
 
@@ -130,6 +132,7 @@ TTS_Test = NodePath("../../../..")
 scoreLabel = NodePath("../../../../CanvasLayer/HUD_UI/ScoreLabel")
 playerNumber = 1
 balanceOrbUI = NodePath("../../../../CanvasLayer/HUD_UI/BalanceOMeter1/BalanceOrb1")
+laser_material = ExtResource("3_v231w")
 
 [node name="MechLowerBodyMesh" parent="SplitScreenGridContainer/P1_Screen/SubViewport/MechRoot_P1/MechLowerBody" index="0"]
 material_override = ExtResource("3_8jrf2")
@@ -160,6 +163,7 @@ TTS_Test = NodePath("../../../..")
 scoreLabel = NodePath("../../../../CanvasLayer/HUD_UI/ScoreLabel")
 playerNumber = 2
 balanceOrbUI = NodePath("../../../../CanvasLayer/HUD_UI/BalanceOMeter2/BalanceOrb2")
+laser_material = ExtResource("5_hwglg")
 
 [node name="MechLowerBodyMesh" parent="SplitScreenGridContainer/P2_Screen/SubViewport/MechRoot_P2/MechLowerBody" index="0"]
 material_override = ExtResource("4_l04fk")

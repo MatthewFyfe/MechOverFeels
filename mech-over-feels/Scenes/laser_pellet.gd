@@ -6,6 +6,11 @@ var lifetime = 3
 var owningPlayer:int = 0
 var forward_dir:Vector3
 
+@export var mesh : MeshInstance3D
+
+func _ready() -> void:
+	look_at(forward_dir * 100)	
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	#position += Vector3(speed,0,0) * delta
@@ -25,3 +30,5 @@ func _on_area_entered(area: Area3D) -> void:
 		area.get_parent().get_parent().get_parent()._take_damage(speed)
 	queue_free()
 	
+func set_material(m : Material) -> void:
+	mesh.material_override = m

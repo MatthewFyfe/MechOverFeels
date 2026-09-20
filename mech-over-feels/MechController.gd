@@ -27,6 +27,7 @@ var laser_pellet = load("res://Scenes/laser_pellet.tscn")
 @export var left_fire_position: Node3D
 var laser_fire_rate:float = 0.1
 var laser_fire_timer = 0
+@export var laser_material: Material
 
 @export var right_arm_raycaster: RayCast3D
 @export var right_arm_sight: Sprite3D
@@ -134,6 +135,7 @@ func _handle_weapons(delta: float) -> void:
 		bullet.position = left_fire_position.global_position
 		bullet.forward_dir = -left_fire_position.global_transform.basis.x.normalized()
 		bullet.owningPlayer = playerNumber
+		bullet.set_material(laser_material)
 		get_parent().add_child(bullet)
 		laser_fire_timer = 0
 	else:
