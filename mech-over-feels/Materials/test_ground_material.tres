@@ -1,4 +1,7 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://fj2uap88ifag"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://fj2uap88ifag"]
+
+[ext_resource type="Texture2D" uid="uid://jl8termc6vn" path="res://GIMP/BalanceOMeter.png" id="1_actg1"]
 
 [resource]
 albedo_color = Color(0.6795425, 0.435164, 0.27920228, 1)
+albedo_texture = ExtResource("1_actg1")

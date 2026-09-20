@@ -12,7 +12,7 @@ static var score2 = 0
 @export var torso_turn_speed: float = 90.0  # degrees/sec
 @export var torso_left_recoil_speed: float = 45.0 #degrees/sec
 @export var torso_right_recoil_speed: float = 180.0 #degrees/sec
-@export var max_torso_yaw: float = 45.0     # degrees from body center
+@export var max_torso_yaw: float = 65.0     # degrees from body center
 
 @export var body_path: NodePath
 @export var torso_path: NodePath

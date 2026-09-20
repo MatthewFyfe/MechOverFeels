@@ -237,9 +237,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 shape = SubResource("BoxShape3D_hlpg0")
 
 [node name="GroundMesh" type="MeshInstance3D" parent="Obstacle1"]
-material_override = ExtResource("8_l04fk")
+material_override = ExtResource("8_eicry")
 mesh = SubResource("BoxMesh_hlpg0")
 skeleton = NodePath("../..")
+
+[node name="Area3D" type="Area3D" parent="Obstacle1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle1/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("BoxShape3D_hlpg0")
 
 [node name="Obstacle2" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.99914, 0, -14.596794)
@@ -253,6 +259,12 @@ material_override = ExtResource("8_l04fk")
 mesh = SubResource("BoxMesh_hlpg0")
 skeleton = NodePath("../..")
 
+[node name="Area3D" type="Area3D" parent="Obstacle2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle2/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("BoxShape3D_hlpg0")
+
 [node name="Obstacle3" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.970774, 0, -14.596794)
 
@@ -261,9 +273,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 shape = SubResource("BoxShape3D_hlpg0")
 
 [node name="GroundMesh" type="MeshInstance3D" parent="Obstacle3"]
-material_override = ExtResource("8_l04fk")
+material_override = ExtResource("8_eicry")
 mesh = SubResource("BoxMesh_hlpg0")
 skeleton = NodePath("../..")
+
+[node name="Area3D" type="Area3D" parent="Obstacle3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle3/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("BoxShape3D_hlpg0")
 
 [node name="Obstacle4" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.970774, 0, 12.810917)
@@ -276,6 +294,12 @@ shape = SubResource("BoxShape3D_hlpg0")
 material_override = ExtResource("8_l04fk")
 mesh = SubResource("BoxMesh_hlpg0")
 skeleton = NodePath("../..")
+
+[node name="Area3D" type="Area3D" parent="Obstacle4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle4/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("BoxShape3D_hlpg0")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_l04fk")
