@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cnrujoeaxghfr"]
+[gd_scene load_steps=11 format=3 uid="uid://cnrujoeaxghfr"]
 
 [ext_resource type="Script" uid="uid://bpy635b15qgt8" path="res://Scenes/TTS_Test.gd" id="1_aviqd"]
 [ext_resource type="Material" uid="uid://fj2uap88ifag" path="res://Materials/test_ground_material.tres" id="1_lp07w"]
 [ext_resource type="PackedScene" uid="uid://2uofqysof0ec" path="res://Scenes/MechCharacter.tscn" id="2_vc1rf"]
+[ext_resource type="Material" uid="uid://bc5yrxoiunsq2" path="res://Materials/blueTeam_material.tres" id="3_8jrf2"]
 [ext_resource type="PackedScene" uid="uid://v0joiov0itsu" path="res://Scenes/hud_ui.tscn" id="3_aky2o"]
+[ext_resource type="Material" uid="uid://dmflj5avbmagq" path="res://Materials/enemy_material.tres" id="4_l04fk"]
 [ext_resource type="BoxMesh" uid="uid://cignox1amd840" path="res://Meshes/Debug_Ground.tres" id="5_ei7bx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ei7bx"]
@@ -15,9 +17,10 @@ size = Vector3(10, 10, 10)
 [sub_resource type="BoxMesh" id="BoxMesh_hlpg0"]
 size = Vector3(10, 10, 10)
 
-[node name="DebugSceneRoot" type="Node3D"]
+[node name="DebugSceneRoot" type="Node3D" node_paths=PackedStringArray("victoryLabel")]
 process_mode = 3
 script = ExtResource("1_aviqd")
+victoryLabel = NodePath("CanvasLayer/HUD_UI/VictoryLabel")
 
 [node name="SplitScreenGridContainer" type="GridContainer" parent="."]
 process_mode = 1
@@ -46,6 +49,18 @@ scoreLabel = NodePath("../../../../CanvasLayer/HUD_UI/ScoreLabel")
 playerNumber = 1
 balanceOrbUI = NodePath("../../../../CanvasLayer/HUD_UI/BalanceOMeter1/BalanceOrb1")
 
+[node name="MechLowerBodyMesh" parent="SplitScreenGridContainer/P1_Screen/SubViewport/MechRoot_P1/MechLowerBody" index="0"]
+material_override = ExtResource("3_8jrf2")
+
+[node name="MechTorsoMesh" parent="SplitScreenGridContainer/P1_Screen/SubViewport/MechRoot_P1/MechLowerBody/MechTorso" index="1"]
+material_override = ExtResource("3_8jrf2")
+
+[node name="MechArmLMesh" parent="SplitScreenGridContainer/P1_Screen/SubViewport/MechRoot_P1/MechLowerBody/MechTorso/MechArms" index="0"]
+material_override = ExtResource("3_8jrf2")
+
+[node name="MechArmRMesh" parent="SplitScreenGridContainer/P1_Screen/SubViewport/MechRoot_P1/MechLowerBody/MechTorso/MechArms" index="1"]
+material_override = ExtResource("3_8jrf2")
+
 [node name="P2_Screen" type="SubViewportContainer" parent="SplitScreenGridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -63,6 +78,18 @@ TTS_Test = NodePath("../../../..")
 scoreLabel = NodePath("../../../../CanvasLayer/HUD_UI/ScoreLabel")
 playerNumber = 2
 balanceOrbUI = NodePath("../../../../CanvasLayer/HUD_UI/BalanceOMeter2/BalanceOrb2")
+
+[node name="MechLowerBodyMesh" parent="SplitScreenGridContainer/P2_Screen/SubViewport/MechRoot_P2/MechLowerBody" index="0"]
+material_override = ExtResource("4_l04fk")
+
+[node name="MechTorsoMesh" parent="SplitScreenGridContainer/P2_Screen/SubViewport/MechRoot_P2/MechLowerBody/MechTorso" index="1"]
+material_override = ExtResource("4_l04fk")
+
+[node name="MechArmLMesh" parent="SplitScreenGridContainer/P2_Screen/SubViewport/MechRoot_P2/MechLowerBody/MechTorso/MechArms" index="0"]
+material_override = ExtResource("4_l04fk")
+
+[node name="MechArmRMesh" parent="SplitScreenGridContainer/P2_Screen/SubViewport/MechRoot_P2/MechLowerBody/MechTorso/MechArms" index="1"]
+material_override = ExtResource("4_l04fk")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.112417, 0)
@@ -96,4 +123,6 @@ material_override = ExtResource("1_lp07w")
 mesh = SubResource("BoxMesh_hlpg0")
 skeleton = NodePath("../..")
 
+[editable path="SplitScreenGridContainer/P1_Screen/SubViewport/MechRoot_P1"]
+[editable path="SplitScreenGridContainer/P2_Screen/SubViewport/MechRoot_P2"]
 [editable path="CanvasLayer/HUD_UI"]
