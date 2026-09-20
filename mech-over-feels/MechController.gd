@@ -50,6 +50,9 @@ var drift_limit_max: float = 0.75
 @export var gauss_sfx: AudioStreamPlayer
 @export var fall_sfx: AudioStreamPlayer
 
+@export var LLeg_anim: AnimationPlayer
+@export var RLeg_anim: AnimationPlayer
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_body = get_node(body_path)
@@ -90,6 +93,11 @@ func _handle_movement(delta: float) -> void:
 	# Move in body's forward direction
 	var forward_dir := -_body.global_transform.basis.x
 	velocity = forward_dir * (forward * move_speed)
+	
+	if(velocity.length() > 0):
+		LLeg_anim.play("Lleg_anim")
+		RLeg_anim.play("Rleg_anim")
+	
 	# Adjust balance
 	if(forward > 0):
 		drift_vector += Vector2(0,0.05*delta)

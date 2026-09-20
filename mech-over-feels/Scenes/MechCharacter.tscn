@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://2uofqysof0ec"]
+[gd_scene load_steps=18 format=3 uid="uid://2uofqysof0ec"]
 
 [ext_resource type="Script" uid="uid://bm20ngvwcl77v" path="res://MechController.gd" id="1_ktbq0"]
 [ext_resource type="ArrayMesh" uid="uid://b0drui203ni05" path="res://Blender/mech_Lleg_Cube_001.res" id="2_k2rj2"]
@@ -16,10 +16,132 @@ height = 7.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_5dqdn"]
 size = Vector3(2, 5, 2.5)
 
+[sub_resource type="Animation" id="Animation_k2rj2"]
+resource_name = "Lleg_anim"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 3.1415927, -0.38397244), Vector3(0, 3.1415927, 0), Vector3(0, 3.1415927, -0.38397244), Vector3(0, 3.1415927, -0.7679449), Vector3(0, 3.1415927, -0.38397244)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.5, 0.5, 0.8), Vector3(-0.75, 0.5, 0.8), Vector3(-0.5, 0.5, 0.8), Vector3(-0.25, 0.5, 0.8), Vector3(-0.5, 0.5, 0.8)]
+}
+
+[sub_resource type="Animation" id="Animation_kse8s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3.1415927, -0.38397244)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.5, 0.5, 0.8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_seuac"]
+_data = {
+&"Lleg_anim": SubResource("Animation_k2rj2"),
+&"RESET": SubResource("Animation_kse8s")
+}
+
+[sub_resource type="Animation" id="Animation_seuac"]
+resource_name = "Rleg_anim"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.5, 0.5, -0.8), Vector3(-0.25, 0.5, -0.8), Vector3(-0.5, 0.5, -0.8), Vector3(-0.75, 0.5, -0.8), Vector3(-0.5, 0.5, -0.8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -3.1415927, -0.38397244), Vector3(0, -3.1415927, -0.7679449), Vector3(0, -3.1415927, -0.38397244), Vector3(0, -3.1415927, 0), Vector3(0, -3.1415927, -0.38397244)]
+}
+
+[sub_resource type="Animation" id="Animation_bvfb7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.5, 0.5, -0.8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.1415927, -0.38397244)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gjibo"]
+_data = {
+&"RESET": SubResource("Animation_bvfb7"),
+&"Rleg_anim": SubResource("Animation_seuac")
+}
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_toior"]
 size = Vector3(3.3184814, 2, 4)
 
-[node name="MechRoot" type="CharacterBody3D" node_paths=PackedStringArray("left_arm_raycaster", "left_arm_sight", "left_fire_position", "right_arm_raycaster", "right_arm_sight", "right_fire_position")]
+[node name="MechRoot" type="CharacterBody3D" node_paths=PackedStringArray("left_arm_raycaster", "left_arm_sight", "left_fire_position", "right_arm_raycaster", "right_arm_sight", "right_fire_position", "LLeg_anim", "RLeg_anim")]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_ktbq0")
@@ -31,6 +153,8 @@ left_fire_position = NodePath("MechLowerBody/MechTorso/MechArms/MechArmLMesh/LFi
 right_arm_raycaster = NodePath("MechLowerBody/MechTorso/MechArms/MechArmLMesh/RRayCast3D_Laser")
 right_arm_sight = NodePath("MechLowerBody/MechTorso/MechArms/MechArmLMesh/RAimLaser")
 right_fire_position = NodePath("MechLowerBody/MechTorso/MechArms/MechArmLMesh/RFirePosition")
+LLeg_anim = NodePath("MechLowerBody/MeshLlegMesh/AnimationPlayer")
+RLeg_anim = NodePath("MechLowerBody/MechRlegMesh/AnimationPlayer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_ktbq0")
@@ -49,10 +173,20 @@ shape = SubResource("BoxShape3D_5dqdn")
 transform = Transform3D(-0.92718387, -0.37460658, -8.742278e-08, -0.37460658, 0.92718387, 0, 8.105699e-08, 3.2749146e-08, -1, -0.5, 0.5, 0.8)
 mesh = ExtResource("2_k2rj2")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MechLowerBody/MeshLlegMesh"]
+libraries = {
+&"": SubResource("AnimationLibrary_seuac")
+}
+
 [node name="MechRlegMesh" type="MeshInstance3D" parent="MechLowerBody"]
 transform = Transform3D(-0.92718387, -0.37460658, 8.742278e-08, -0.37460658, 0.92718387, 0, -8.105699e-08, -3.2749146e-08, -1, -0.5, 0.5, -0.8)
 material_override = ExtResource("2_nbti4")
 mesh = ExtResource("4_kse8s")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MechLowerBody/MechRlegMesh"]
+libraries = {
+&"": SubResource("AnimationLibrary_gjibo")
+}
 
 [node name="MechTorso" type="Node3D" parent="MechLowerBody"]
 
