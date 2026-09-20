@@ -147,7 +147,7 @@ size = Vector2i(958, 1080)
 render_target_update_mode = 4
 
 [node name="MechRoot_P1" parent="SplitScreenGridContainer/P1_Screen/SubViewport" node_paths=PackedStringArray("TTS_Test", "scoreLabel", "balanceOrbUI", "laser_sfx", "gauss_sfx", "fall_sfx") instance=ExtResource("2_vc1rf")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -10, 1, 0)
+transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, -10, 4.9912777, 0)
 TTS_Test = NodePath("../../../..")
 scoreLabel = NodePath("../../../../CanvasLayer/HUD_UI/ScoreLabel")
 playerNumber = 1
@@ -157,7 +157,10 @@ laser_sfx = NodePath("../../../../LaserAudioPlayer3D")
 gauss_sfx = NodePath("../../../../GaussAudioPlayer3D")
 fall_sfx = NodePath("../../../../FallAudioPlayer3D")
 
-[node name="MechLowerBodyMesh" parent="SplitScreenGridContainer/P1_Screen/SubViewport/MechRoot_P1/MechLowerBody" index="0"]
+[node name="MeshLlegMesh" parent="SplitScreenGridContainer/P1_Screen/SubViewport/MechRoot_P1/MechLowerBody" index="1"]
+material_override = ExtResource("3_8jrf2")
+
+[node name="MechRlegMesh" parent="SplitScreenGridContainer/P1_Screen/SubViewport/MechRoot_P1/MechLowerBody" index="2"]
 material_override = ExtResource("3_8jrf2")
 
 [node name="MechTorsoMesh" parent="SplitScreenGridContainer/P1_Screen/SubViewport/MechRoot_P1/MechLowerBody/MechTorso" index="1"]
@@ -181,7 +184,7 @@ size = Vector2i(958, 1080)
 render_target_update_mode = 4
 
 [node name="MechRoot_P2" parent="SplitScreenGridContainer/P2_Screen/SubViewport" node_paths=PackedStringArray("TTS_Test", "scoreLabel", "balanceOrbUI", "laser_sfx", "gauss_sfx", "fall_sfx") instance=ExtResource("2_vc1rf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 10, 5.6479836, 0)
 TTS_Test = NodePath("../../../..")
 scoreLabel = NodePath("../../../../CanvasLayer/HUD_UI/ScoreLabel")
 playerNumber = 2
@@ -191,7 +194,10 @@ laser_sfx = NodePath("../../../../LaserAudioPlayer3D")
 gauss_sfx = NodePath("../../../../GaussAudioPlayer3D")
 fall_sfx = NodePath("../../../../FallAudioPlayer3D")
 
-[node name="MechLowerBodyMesh" parent="SplitScreenGridContainer/P2_Screen/SubViewport/MechRoot_P2/MechLowerBody" index="0"]
+[node name="MeshLlegMesh" parent="SplitScreenGridContainer/P2_Screen/SubViewport/MechRoot_P2/MechLowerBody" index="1"]
+material_override = ExtResource("4_l04fk")
+
+[node name="MechRlegMesh" parent="SplitScreenGridContainer/P2_Screen/SubViewport/MechRoot_P2/MechLowerBody" index="2"]
 material_override = ExtResource("4_l04fk")
 
 [node name="MechTorsoMesh" parent="SplitScreenGridContainer/P2_Screen/SubViewport/MechRoot_P2/MechLowerBody/MechTorso" index="1"]

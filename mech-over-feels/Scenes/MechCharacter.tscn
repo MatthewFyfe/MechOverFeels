@@ -1,25 +1,23 @@
-[gd_scene load_steps=10 format=3 uid="uid://2uofqysof0ec"]
+[gd_scene load_steps=12 format=3 uid="uid://2uofqysof0ec"]
 
 [ext_resource type="Script" uid="uid://bm20ngvwcl77v" path="res://MechController.gd" id="1_ktbq0"]
+[ext_resource type="ArrayMesh" uid="uid://b0drui203ni05" path="res://Blender/mech_Lleg_Cube_001.res" id="2_k2rj2"]
 [ext_resource type="Material" uid="uid://b8eaa8ifn847f" path="res://Materials/mech_material.tres" id="2_nbti4"]
 [ext_resource type="Texture2D" uid="uid://c7k0evt2dfhqf" path="res://GIMP/BalanceOrb.png" id="3_5dqdn"]
+[ext_resource type="ArrayMesh" uid="uid://bdb64hgx8diln" path="res://Blender/mech_torso_Cube_002.res" id="3_toior"]
+[ext_resource type="ArrayMesh" uid="uid://jjf0dtm07toi" path="res://Blender/mech_Larm_Cube_003.res" id="4_c6s45"]
+[ext_resource type="ArrayMesh" uid="uid://xsfvolv5suel" path="res://Blender/mech_Rleg_Cube.res" id="4_kse8s"]
+[ext_resource type="ArrayMesh" uid="uid://c4jhe7rqrlc7p" path="res://Blender/mech_Rarm_Cube_004.res" id="6_nqc8h"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ktbq0"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_ktbq0"]
-size = Vector3(0.5, 1, 0.5)
+radius = 2.0
+height = 7.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5dqdn"]
-size = Vector3(0.5, 1.5, 0.5)
+size = Vector3(2, 5, 2.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_toior"]
-size = Vector3(0.5, 0.5, 1.5)
-
-[sub_resource type="BoxMesh" id="BoxMesh_nbti4"]
-size = Vector3(0.5, 0.5, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_5dqdn"]
-size = Vector3(1, 0.2, 0.2)
+size = Vector3(3.3184814, 2, 4)
 
 [node name="MechRoot" type="CharacterBody3D" node_paths=PackedStringArray("left_arm_raycaster", "left_arm_sight", "left_fire_position", "right_arm_raycaster", "right_arm_sight", "right_fire_position")]
 collision_layer = 2
@@ -39,17 +37,22 @@ shape = SubResource("CapsuleShape3D_ktbq0")
 
 [node name="MechLowerBody" type="Node3D" parent="."]
 
-[node name="MechLowerBodyMesh" type="MeshInstance3D" parent="MechLowerBody"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.30932963, 0)
-material_override = ExtResource("2_nbti4")
-mesh = SubResource("BoxMesh_ktbq0")
-
-[node name="BodyHitBox" type="Area3D" parent="MechLowerBody/MechLowerBodyMesh"]
+[node name="LegsHitBox" type="Area3D" parent="MechLowerBody"]
+transform = Transform3D(-0.92718387, -0.37460658, 8.742278e-08, -0.37460658, 0.92718387, 0, -8.105699e-08, -3.2749146e-08, -1, 0, 0, 0)
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MechLowerBody/MechLowerBodyMesh/BodyHitBox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MechLowerBody/LegsHitBox"]
+transform = Transform3D(0.92718387, -0.37460658, 0, 0.37460658, 0.92718387, 0, 0, 0, 1, 0.7935156, -1.2625289, -2.2973252e-08)
 shape = SubResource("BoxShape3D_5dqdn")
+
+[node name="MeshLlegMesh" type="MeshInstance3D" parent="MechLowerBody"]
+transform = Transform3D(-0.92718387, -0.37460658, -8.742278e-08, -0.37460658, 0.92718387, 0, 8.105699e-08, 3.2749146e-08, -1, -0.5, 0.5, 0.8)
+mesh = ExtResource("2_k2rj2")
+
+[node name="MechRlegMesh" type="MeshInstance3D" parent="MechLowerBody"]
+transform = Transform3D(-0.92718387, -0.37460658, 8.742278e-08, -0.37460658, 0.92718387, 0, -8.105699e-08, -3.2749146e-08, -1, -0.5, 0.5, -0.8)
+material_override = ExtResource("2_nbti4")
+mesh = ExtResource("4_kse8s")
 
 [node name="MechTorso" type="Node3D" parent="MechLowerBody"]
 
@@ -57,20 +60,20 @@ shape = SubResource("BoxShape3D_5dqdn")
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MechLowerBody/MechTorso/TorsoHitBox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.042701483, 1.5442832, 0)
 shape = SubResource("BoxShape3D_toior")
 
 [node name="MechTorsoMesh" type="MeshInstance3D" parent="MechLowerBody/MechTorso"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46299362, 0)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.46299362, 0)
 material_override = ExtResource("2_nbti4")
-mesh = SubResource("BoxMesh_nbti4")
+mesh = ExtResource("3_toior")
 
 [node name="MechArms" type="Node3D" parent="MechLowerBody/MechTorso"]
 
 [node name="MechArmLMesh" type="MeshInstance3D" parent="MechLowerBody/MechTorso/MechArms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25746268, 0.28641975, 0.62340033)
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -0.257, 0.286, -0.15)
 material_override = ExtResource("2_nbti4")
-mesh = SubResource("BoxMesh_5dqdn")
+mesh = ExtResource("4_c6s45")
 
 [node name="LRayCast3D_Laser" type="RayCast3D" parent="MechLowerBody/MechTorso/MechArms/MechArmLMesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5485155, 0, 0)
@@ -85,7 +88,7 @@ billboard = 1
 texture = ExtResource("3_5dqdn")
 
 [node name="LFirePosition" type="Node3D" parent="MechLowerBody/MechTorso/MechArms/MechArmLMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.59124666, 0, 0)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2.822654, 0.53126717, -1.7194523)
 
 [node name="RRayCast3D_Laser" type="RayCast3D" parent="MechLowerBody/MechTorso/MechArms/MechArmLMesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5485155, 0, 0)
@@ -100,12 +103,12 @@ billboard = 1
 texture = ExtResource("3_5dqdn")
 
 [node name="RFirePosition" type="Node3D" parent="MechLowerBody/MechTorso/MechArms/MechArmLMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.59124666, 0, -1.2479944)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2.625294, 0.5787823, 1.5343322)
 
 [node name="MechArmRMesh" type="MeshInstance3D" parent="MechLowerBody/MechTorso/MechArms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25746268, 0.28641975, -0.60923195)
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -0.257, 0.286, 0.15)
 material_override = ExtResource("2_nbti4")
-mesh = SubResource("BoxMesh_5dqdn")
+mesh = ExtResource("6_nqc8h")
 
 [node name="Camera3D" type="Camera3D" parent="MechLowerBody/MechTorso"]
-transform = Transform3D(0.0020816918, -0.34346303, 0.9391639, 0.0007612967, 0.93916625, 0.34346217, -0.99999756, 5.82078e-11, 0.0022165317, 2, 1, 0)
+transform = Transform3D(0.0020816464, -0.34346303, 0.9391639, 0.0007612967, 0.93916625, 0.34346217, -0.99999756, 1.5599692e-08, 0.0022164893, 9.505185, 4.045617, 0)
