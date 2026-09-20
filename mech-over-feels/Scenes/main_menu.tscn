@@ -1,0 +1,84 @@
+[gd_scene load_steps=3 format=3 uid="uid://nkj4lqg4rpj0"]
+
+[ext_resource type="Texture2D" uid="uid://btb3wjaq4io8o" path="res://GIMP/Logo_MechaTumbleRumble.png" id="1_28flt"]
+[ext_resource type="Script" uid="uid://c4lpc224vcadu" path="res://Scenes/main_menu.gd" id="1_48xlc"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_48xlc")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 420.0
+offset_right = 1500.0
+offset_bottom = 1080.0
+texture = ExtResource("1_28flt")
+
+[node name="Button_1v1" type="Button" parent="."]
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 300.0
+offset_bottom = 200.0
+theme_override_font_sizes/font_size = 40
+text = "Start 1v1"
+
+[node name="Button_2v2" type="Button" parent="."]
+offset_left = 1620.0
+offset_top = 100.0
+offset_right = 1820.0
+offset_bottom = 200.0
+theme_override_font_sizes/font_size = 40
+text = "Start 2v2"
+
+[node name="Instructions1" type="Label" parent="."]
+offset_left = 100.0
+offset_top = 300.0
+offset_right = 300.0
+offset_bottom = 550.0
+text = "Legs Forward - W
+Legs Backward - S
+Legs Left - A
+Legs Right - D
+
+IF 1v1
+Torso Left - Q
+Torso Right - E
+Fire Left Weapon - Z
+Fire Right Weapon - C
+
+IF 2v2
+Torso Left - J
+Torso Right - L
+Fire Left Weapon - I
+Fire Right Weapon - K"
+
+[node name="Instructions2" type="Label" parent="."]
+offset_left = 1620.0
+offset_top = 300.0
+offset_right = 1820.0
+offset_bottom = 550.0
+text = "Legs Forward - num8
+Legs Backward - num5
+Legs Left - num4
+Legs Right - num6
+
+IF 1v1
+Torso Left - num7
+Torso Right - num9
+Fire Left Weapon - num1
+Fire Right Weapon - num3
+
+IF 2v2
+Torso Left - Left Arrow
+Torso Right - Right Arrow
+Fire Left Weapon - Up Arrow
+Fire Right Weapon - Down Arrow"
+
+[node name="FinePrint" type="Label" parent="."]
+offset_left = 735.0
+offset_top = 1044.0
+offset_right = 1185.0
+offset_bottom = 1074.0
+theme_override_font_sizes/font_size = 20
+text = "Victory in the Dome guarantees Citizenship!"
+
+[connection signal="pressed" from="Button_1v1" to="." method="_on_button_1v_1_pressed"]
+[connection signal="pressed" from="Button_2v2" to="." method="_on_button_2v_2_pressed"]

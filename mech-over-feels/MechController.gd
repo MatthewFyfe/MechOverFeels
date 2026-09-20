@@ -200,7 +200,7 @@ func _handle_balance(delta: float) ->  void:
 			score1 += 1
 			scoreLabel.text = "%d - SCORE - %d" % [score1, score2]
 		
-		TTS_Test.reset()
+		TTS_Test.reset(score1, score2)
 		get_tree().paused = true	
 		
 		balance_level = balanceOrbHome

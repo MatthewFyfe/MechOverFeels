@@ -17,7 +17,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
-func reset() -> void:
+func reset(score1, score2) -> void:
 	print("reset")
 	await get_tree().create_timer(2.0).timeout # Waits for X seconds
 	get_tree().paused = false
