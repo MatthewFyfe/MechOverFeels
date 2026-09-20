@@ -113,11 +113,11 @@ main_music = NodePath("MusicStreamPlayer3D")
 
 [node name="LaserAudioPlayer3D" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_hwglg")
-volume_db = -24.0
+volume_db = -12.0
 
 [node name="GaussAudioPlayer3D" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_aoixr")
-volume_db = -12.0
+volume_db = 6.0
 
 [node name="FallAudioPlayer3D" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_wnxr1")
@@ -125,7 +125,6 @@ volume_db = -6.0
 
 [node name="MusicStreamPlayer3D" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_wnxr1")
-volume_db = -16.0
 
 [node name="SplitScreenGridContainer" type="GridContainer" parent="."]
 process_mode = 1
