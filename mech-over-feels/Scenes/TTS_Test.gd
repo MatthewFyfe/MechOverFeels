@@ -14,7 +14,7 @@ var voice_id
 func _ready() -> void:
 	# Pick a voice. Here, we arbitrarily pick the first English voice.
 	var voices = DisplayServer.tts_get_voices_for_language("en")
-	voice_id = voices[1]	
+	voice_id = voices[0]
 	
 	#DisplayServer.tts_speak("Reactor, online.", voice_id, tts_volume, tts_pitch, tts_speed)
 	#DisplayServer.tts_speak("Sensors, online.", voice_id, tts_volume, tts_pitch, tts_speed)
@@ -38,14 +38,18 @@ func reset(score1, score2) -> void:
 	if(score1 >= scoreLimit):
 		victoryLabel.visible = true
 		victoryLabel.text = "BLUE WINS!"
-		DisplayServer.tts_speak("BLUE WINS!", voice_id, tts_volume, tts_pitch, tts_speed)
+		DisplayServer.tts_speak("BLUE WINS!", voice_id, tts_volume+50, tts_pitch, tts_speed)
 		victoryLabel.add_theme_color_override("font_color", Color.SKY_BLUE)
 		await get_tree().create_timer(2.0).timeout # Waits for X seconds
+		MechCharacter.score1 = 0
+		MechCharacter.score2 = 0
 		get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 	if(score2 >= scoreLimit):
 		victoryLabel.visible = true
 		victoryLabel.text = "RED WINS!"
-		DisplayServer.tts_speak("RED WINS!", voice_id, tts_volume, tts_pitch, tts_speed)
+		DisplayServer.tts_speak("RED WINS!", voice_id, tts_volume+50, tts_pitch, tts_speed)
 		victoryLabel.add_theme_color_override("font_color", Color.DEEP_PINK)
 		await get_tree().create_timer(2.0).timeout # Waits for X seconds
+		MechCharacter.score1 = 0
+		MechCharacter.score2 = 0
 		get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")

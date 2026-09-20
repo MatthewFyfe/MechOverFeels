@@ -30,10 +30,12 @@ text = "Start 2v2"
 
 [node name="Instructions1" type="Label" parent="."]
 offset_left = 100.0
-offset_top = 300.0
-offset_right = 300.0
-offset_bottom = 550.0
-text = "Legs Forward - W
+offset_top = 400.0
+offset_right = 303.0
+offset_bottom = 865.0
+text = "BLUE PLAYER (Left Screen)
+
+Legs Forward - W
 Legs Backward - S
 Legs Left - A
 Legs Right - D
@@ -52,19 +54,21 @@ Fire Right Weapon - K"
 
 [node name="Instructions2" type="Label" parent="."]
 offset_left = 1620.0
-offset_top = 300.0
-offset_right = 1820.0
-offset_bottom = 550.0
-text = "Legs Forward - num8
+offset_top = 400.0
+offset_right = 1871.0
+offset_bottom = 865.0
+text = "RED PLAYER (Right Screen)
+
+Legs Forward - num8
 Legs Backward - num5
 Legs Left - num4
 Legs Right - num6
 
 IF 1v1
-Torso Left - num7
-Torso Right - num9
-Fire Left Weapon - num1
-Fire Right Weapon - num3
+Torso Left - Left Arrow
+Torso Right - Right Arrow
+Fire Left Weapon - Up Arrow
+Fire Right Weapon - Down Arrow
 
 IF 2v2
 Torso Left - Left Arrow

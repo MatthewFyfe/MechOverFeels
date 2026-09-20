@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+class_name MechCharacter
+
 static var score1 = 0
 static var score2 = 0
 

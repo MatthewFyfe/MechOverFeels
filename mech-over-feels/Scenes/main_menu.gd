@@ -46,22 +46,22 @@ func set_1v1_controls() -> void:
 	# Adjust P2 controls
 	InputMap.action_erase_events("aim_left_p2")
 	newEvent = InputEventKey.new()
-	newEvent.keycode = KEY_KP_7
+	newEvent.keycode = KEY_LEFT
 	InputMap.action_add_event("aim_left_p2", newEvent)
 	
 	InputMap.action_erase_events("aim_right_p2")
 	newEvent = InputEventKey.new()
-	newEvent.keycode = KEY_KP_9
+	newEvent.keycode = KEY_RIGHT
 	InputMap.action_add_event("aim_right_p2", newEvent)
 	
 	InputMap.action_erase_events("fire_left_p2")
 	newEvent = InputEventKey.new()
-	newEvent.keycode = KEY_KP_1
+	newEvent.keycode = KEY_UP
 	InputMap.action_add_event("fire_left_p2", newEvent)
 	
 	InputMap.action_erase_events("fire_right_p2")
 	newEvent = InputEventKey.new()
-	newEvent.keycode = KEY_KP_3
+	newEvent.keycode = KEY_DOWN
 	InputMap.action_add_event("fire_right_p2", newEvent)	
 
 func set_2v2_controls() -> void:
