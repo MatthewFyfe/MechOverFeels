@@ -34,3 +34,10 @@ text = "BALANCE"
 
 [node name="BalanceOrb2" type="Sprite2D" parent="BalanceOMeter2"]
 texture = ExtResource("2_jwgpt")
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 840.0
+offset_right = 1080.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "0 - SCORE - 0"

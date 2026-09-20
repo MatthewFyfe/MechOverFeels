@@ -16,9 +16,11 @@ size = Vector3(10, 10, 10)
 size = Vector3(10, 10, 10)
 
 [node name="DebugSceneRoot" type="Node3D"]
+process_mode = 3
 script = ExtResource("1_aviqd")
 
 [node name="SplitScreenGridContainer" type="GridContainer" parent="."]
+process_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -37,8 +39,10 @@ handle_input_locally = false
 size = Vector2i(958, 1080)
 render_target_update_mode = 4
 
-[node name="MechRoot_P1" parent="SplitScreenGridContainer/P1_Screen/SubViewport" node_paths=PackedStringArray("balanceOrbUI") instance=ExtResource("2_vc1rf")]
+[node name="MechRoot_P1" parent="SplitScreenGridContainer/P1_Screen/SubViewport" node_paths=PackedStringArray("TTS_Test", "scoreLabel", "balanceOrbUI") instance=ExtResource("2_vc1rf")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -10, 1, 0)
+TTS_Test = NodePath("../../../..")
+scoreLabel = NodePath("../../../../CanvasLayer/HUD_UI/ScoreLabel")
 playerNumber = 1
 balanceOrbUI = NodePath("../../../../CanvasLayer/HUD_UI/BalanceOMeter1/BalanceOrb1")
 
@@ -53,8 +57,10 @@ handle_input_locally = false
 size = Vector2i(958, 1080)
 render_target_update_mode = 4
 
-[node name="MechRoot_P2" parent="SplitScreenGridContainer/P2_Screen/SubViewport" node_paths=PackedStringArray("balanceOrbUI") instance=ExtResource("2_vc1rf")]
+[node name="MechRoot_P2" parent="SplitScreenGridContainer/P2_Screen/SubViewport" node_paths=PackedStringArray("TTS_Test", "scoreLabel", "balanceOrbUI") instance=ExtResource("2_vc1rf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, 0)
+TTS_Test = NodePath("../../../..")
+scoreLabel = NodePath("../../../../CanvasLayer/HUD_UI/ScoreLabel")
 playerNumber = 2
 balanceOrbUI = NodePath("../../../../CanvasLayer/HUD_UI/BalanceOMeter2/BalanceOrb2")
 

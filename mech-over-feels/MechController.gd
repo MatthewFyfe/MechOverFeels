@@ -1,5 +1,12 @@
 extends CharacterBody3D
 
+static var score1 = 0
+static var score2 = 0
+
+@export var TTS_Test: TTS_Test
+
+@export var scoreLabel: Label
+
 @export var move_speed: float = 5.0
 @export var turn_speed: float = 60.0        # degrees/sec
 @export var torso_turn_speed: float = 90.0  # degrees/sec
@@ -185,6 +192,20 @@ func _handle_balance(delta: float) ->  void:
 		#fall over
 		_body.rotation.x = 0
 		_body.rotation.z = 90
+		
+		if(playerNumber == 1):
+			score2 += 1
+			scoreLabel.text = "%d - SCORE - %d" % [score1, score2]
+		if(playerNumber == 2):
+			score1 += 1
+			scoreLabel.text = "%d - SCORE - %d" % [score1, score2]
+		
+		TTS_Test.reset()
+		get_tree().paused = true	
+		
+		balance_level = balanceOrbHome
+		drift_vector = Vector2(0,0)
+		
 
 # Did we get shot?
 #func _on_body_hit_box_area_entered(area: Area3D) -> void:
