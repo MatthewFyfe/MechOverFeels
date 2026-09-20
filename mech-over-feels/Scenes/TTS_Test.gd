@@ -3,6 +3,7 @@ class_name TTS_Test
 
 @export var scoreLimit = 3
 @export var victoryLabel: Label
+@export var main_music: AudioStreamPlayer
 
 var tts_volume = 50
 var tts_pitch = 0.8
@@ -20,6 +21,9 @@ func _ready() -> void:
 	#DisplayServer.tts_speak("Weapons, online.", voice_id, tts_volume, tts_pitch, tts_speed)
 	DisplayServer.tts_speak("All systems nominal.", voice_id, tts_volume, tts_pitch, tts_speed)
 	DisplayServer.tts_speak("Mekka-Tumble Rumble, GO!", voice_id, tts_volume, tts_pitch, 1.0)
+	
+	await get_tree().create_timer(4.0).timeout # Waits for X seconds
+	main_music.play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

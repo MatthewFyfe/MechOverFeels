@@ -46,6 +46,10 @@ var balance_limit_max: float = 128.0
 var drift_vector: Vector2 = Vector2(0.0,0.0)
 var drift_limit_max: float = 0.75
 
+@export var laser_sfx: AudioStreamPlayer
+@export var gauss_sfx: AudioStreamPlayer
+@export var fall_sfx: AudioStreamPlayer
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_body = get_node(body_path)
@@ -138,6 +142,7 @@ func _handle_weapons(delta: float) -> void:
 		bullet.set_material(laser_material)
 		get_parent().add_child(bullet)
 		laser_fire_timer = 0
+		laser_sfx.play()
 	else:
 		firing_left = 0
 		
@@ -152,6 +157,7 @@ func _handle_weapons(delta: float) -> void:
 		gauss.lifetime = 6
 		get_parent().add_child(gauss)
 		gauss_fire_timer = 0
+		gauss_sfx.play()
 	else:
 		firing_right = 0
 	
@@ -194,6 +200,7 @@ func _handle_balance(delta: float) ->  void:
 		#fall over
 		_body.rotation.x = 0
 		_body.rotation.z = 90
+		fall_sfx.play()
 		
 		if(playerNumber == 1):
 			score2 += 1
