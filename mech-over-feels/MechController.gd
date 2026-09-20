@@ -187,8 +187,19 @@ func _handle_balance(delta: float) ->  void:
 		_body.rotation.z = 90
 
 # Did we get shot?
-func _on_body_hit_box_area_entered(area: Area3D) -> void:
+#func _on_body_hit_box_area_entered(area: Area3D) -> void:
 	#print("Hit by " + area.name)
-	if(area.owningPlayer != null and area.owningPlayer != playerNumber):
-		#drift_vector += Vector2(randf_range(-0.1,0.1), randf_range(-0.1,0.1))
-		drift_vector += (drift_vector.normalized())
+	#if(area.owningPlayer != null and area.owningPlayer != playerNumber):
+		##drift_vector += Vector2(randf_range(-0.1,0.1), randf_range(-0.1,0.1))
+		#drift_vector += (drift_vector.normalized())
+		#
+		##was it a gauss bullet?
+		#if(area.speed == 6):
+			#drift_vector += (drift_vector.normalized())
+
+func _take_damage(amount):
+	#print("Taking damage")
+	if(amount == 10): #laser
+		drift_vector += drift_vector.normalized() * 0.01
+	if(amount == 6): #gauss
+		drift_vector += drift_vector.normalized() * 0.5

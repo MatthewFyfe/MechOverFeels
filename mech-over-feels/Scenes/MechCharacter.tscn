@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://2uofqysof0ec"]
+[gd_scene load_steps=10 format=3 uid="uid://2uofqysof0ec"]
 
 [ext_resource type="Script" uid="uid://bm20ngvwcl77v" path="res://MechController.gd" id="1_ktbq0"]
 [ext_resource type="Material" uid="uid://b8eaa8ifn847f" path="res://Materials/mech_material.tres" id="2_nbti4"]
@@ -10,7 +10,10 @@
 size = Vector3(0.5, 1, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5dqdn"]
-size = Vector3(0.5, 1, 0.5)
+size = Vector3(0.5, 1.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_toior"]
+size = Vector3(0.5, 0.5, 1.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_nbti4"]
 size = Vector3(0.5, 0.5, 1)
@@ -42,11 +45,20 @@ material_override = ExtResource("2_nbti4")
 mesh = SubResource("BoxMesh_ktbq0")
 
 [node name="BodyHitBox" type="Area3D" parent="MechLowerBody/MechLowerBodyMesh"]
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MechLowerBody/MechLowerBodyMesh/BodyHitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_5dqdn")
 
 [node name="MechTorso" type="Node3D" parent="MechLowerBody"]
+
+[node name="TorsoHitBox" type="Area3D" parent="MechLowerBody/MechTorso"]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MechLowerBody/MechTorso/TorsoHitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_toior")
 
 [node name="MechTorsoMesh" type="MeshInstance3D" parent="MechLowerBody/MechTorso"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46299362, 0)
@@ -95,5 +107,3 @@ mesh = SubResource("BoxMesh_5dqdn")
 
 [node name="Camera3D" type="Camera3D" parent="MechLowerBody/MechTorso"]
 transform = Transform3D(0.0020816918, -0.34346303, 0.9391639, 0.0007612967, 0.93916625, 0.34346217, -0.99999756, 5.82078e-11, 0.0022165317, 2, 1, 0)
-
-[connection signal="area_entered" from="MechLowerBody/MechLowerBodyMesh/BodyHitBox" to="." method="_on_body_hit_box_area_entered"]

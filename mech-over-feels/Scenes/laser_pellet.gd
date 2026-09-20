@@ -20,5 +20,8 @@ func _process(delta: float) -> void:
 
 
 func _on_area_entered(area: Area3D) -> void:
-	#print("Bullet hit" + area.name)
+	#print("Bullet hit" + area.name)	
+	if(area.name == "TorsoHitBox" or area.name == "BodyHitBox"):
+		area.get_parent().get_parent().get_parent()._take_damage(speed)
 	queue_free()
+	
